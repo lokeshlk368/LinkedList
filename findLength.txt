@@ -1,0 +1,89 @@
+import java.util.*;
+class Node{
+    Node next;
+    int data;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+}
+class Main{
+    static Node head;
+    static int size;
+    
+    Main()
+    {
+        head=null;
+        size=0;
+    }
+    public void printList()
+    {
+        if(head==null)
+       {
+           System.out.println("List is empty");
+       }
+       else
+       {
+           Node temp=head;
+           while(temp!=null)
+           {
+               System.out.print(temp.data+" ");
+               temp=temp.next;
+           }
+       }
+    }
+    public void push(int data)
+    {
+        Node newNode=new Node(data);
+        newNode.next=head;
+        head=newNode;
+        size++;
+    }
+  
+   public int findLength(Node head)
+   {
+       int count=0;
+       if(head==null)
+       {
+           return 0;
+       }
+       else
+       {
+           count=1+findLength(head.next);
+       }
+       return count;
+       
+       
+    //   Node temp=head;
+    //   if(head==null)
+    //   {
+    //       return 0;
+    //   }
+    //   else
+    //   {
+    //       while(temp!=null)
+    //       {
+    //           count++;
+    //           temp=temp.next;
+    //       }
+    //   }
+   }
+     
+    
+    public static void main(String args[])
+    {
+        Main llist=new Main();
+       
+        llist.push(7); 
+        llist.push(1); 
+        llist.push(3); 
+        llist.push(2); 
+  
+        System.out.println("\nCreated Linked list is:"); 
+        llist.printList();
+        System.out.println("length is");
+        System.out.println(llist.findLength(head));
+  
+    }
+}

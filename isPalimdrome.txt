@@ -1,0 +1,99 @@
+import java.util.*;
+class Node{
+    Node next;
+    int data;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+}
+class Main{
+    static Node head;
+    static int size;
+    
+    Main()
+    {
+        head=null;
+        size=0;
+    }
+    public void printList()
+    {
+        if(head==null)
+       {
+           System.out.println("List is empty");
+       }
+       else
+       {
+           Node temp=head;
+           while(temp!=null)
+           {
+               System.out.print(temp.data+" ");
+               temp=temp.next;
+           }
+       }
+    }
+    public void push(int data)
+    {
+        Node newNode=new Node(data);
+        newNode.next=head;
+        head=newNode;
+        size++;
+    }
+    
+    public static boolean isPalindrome(Node head)
+    {
+            Node temp=head;
+        boolean isplaim=true;
+        Stack<Integer>stack=new Stack<>();
+        while(temp!=null)
+        {
+            stack.push(temp.data);
+            temp=temp.next;
+        }
+       while(head!=null)
+       {
+           int i=stack.pop();
+           if(i==head.data)
+           {
+               isplaim=true;
+           }
+           else
+           {
+               isplaim=false;
+               break;
+           }
+           head=head.next;
+       }
+        return isplaim;
+    }
+    
+ 
+    
+    public static void main(String args[])
+    {
+        Main llist=new Main();
+       
+        llist.push(9); 
+        llist.push(2); 
+        llist.push(3); 
+        llist.push(3); 
+        llist.push(2); 
+        llist.push(9); 
+  
+        System.out.println("\nCreated Linked list is:"); 
+        llist.printList();
+        System.out.println();
+        
+       if(isPalindrome(head))
+       {
+           System.out.println("It is Palindrome");
+       }
+       else
+       {
+           System.out.println("it is not Palindrome");
+       }
+       
+  
+    }
+}

@@ -1,0 +1,63 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+}
+public class Main
+{
+    static Node head;
+    static int size;
+    Main()
+    {
+        head=null;
+        size=0;
+    }
+    
+    public static void push(int d)
+    {
+        Node newNode=new Node(d);
+        newNode.next=head;
+        head=newNode;
+    }
+    public static void printList()
+    {
+        Node temp=head;
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+    public static void swapAlternative(){
+       Node temp=head;
+      while(temp!=null && temp.next!=null)
+      {
+          int value=temp.data;
+          temp.data=temp.next.data;
+          temp.next.data=value;
+          
+          temp=temp.next.next;
+      }
+    }
+	public static void main(String[] args) {
+      Main linkedlist=new Main();
+      push(5);
+      push(10);
+      push(15); 
+      push(20);
+      push(25);
+      push(30);
+      
+      printList();
+      
+      swapAlternative();
+      System.out.println("\n After swap alternative the list is");
+      printList();
+      		
+	}
+}

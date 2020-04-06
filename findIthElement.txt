@@ -1,0 +1,78 @@
+import java.util.*;
+class Node{
+    Node next;
+    int data;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+}
+class Main{
+    static Node head;
+    static int size;
+    
+    Main()
+    {
+        head=null;
+        size=0;
+    }
+    public void printList()
+    {
+        if(head==null)
+       {
+           System.out.println("List is empty");
+       }
+       else
+       {
+           Node temp=head;
+           while(temp!=null)
+           {
+               System.out.print(temp.data+" ");
+               temp=temp.next;
+           }
+       }
+    }
+    public void push(int data)
+    {
+        Node newNode=new Node(data);
+        newNode.next=head;
+        head=newNode;
+        size++;
+    }
+  
+  public int findIthElement(Node head,int pos)
+  {
+      int count=0;
+      Node temp=head;
+      
+      while(temp!=null && temp.data!=pos)
+      {
+          count++;
+          temp=temp.next;
+      }
+      return count;
+      
+  }
+     
+    
+    public static void main(String args[])
+    {
+        Main llist=new Main();
+       
+        llist.push(7); 
+        llist.push(1); 
+        llist.push(3); 
+        llist.push(2); 
+        llist.push(10); 
+        llist.push(12); 
+  
+        System.out.println("\nCreated Linked list is:"); 
+        llist.printList();
+        System.out.println();
+        
+        System.out.println("Ith element is"+llist.findIthElement(head,3));
+       
+  
+    }
+}
