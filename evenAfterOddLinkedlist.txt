@@ -1,0 +1,103 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+}
+public class Main
+{
+    static Node head;
+    static int size;
+    Main()
+    {
+        head=null;
+        size=0;
+    }
+    public void push(int data)
+    {
+        Node newNode=new Node(data);
+        newNode.next=head;
+        head=newNode;
+    }
+    public Node sortEvenOdd(Node head)
+    {
+        Node oddHead=null;
+        Node oddTail=null;
+        
+         Node evenHead=null;
+        Node evenTail=null;
+        
+        Node temp=head;
+        
+        while(temp!=null)
+        {
+          if(temp.data%2!=0)
+          {
+              if(oddHead==null)
+              {
+                  oddHead=temp;
+                  oddTail=temp;
+              }
+              else
+              {
+                  oddTail.next=temp;
+                  oddTail=oddTail.next;
+              }
+          }
+          else
+          {
+             if(evenHead==null)
+             {
+                 evenHead=temp;
+                 evenTail=temp;
+             }
+             else
+             {
+                evenTail.next=temp;
+                evenTail=evenTail.next;
+             }
+          }
+            
+            temp=temp.next;
+        }
+        oddTail.next=null;
+        evenTail.next=null;
+        
+        oddTail.next=evenHead;
+        
+        return oddHead;
+        
+    }
+    public void printList()
+    {
+        Node temp=head;
+        while(temp!=null)
+        {
+            System.out.print(temp.data+" ");
+            temp=temp.next;
+        }
+    }
+	public static void main(String[] args) {
+      Main linkedList=new Main();
+      linkedList.push(9);
+      linkedList.push(0);
+      linkedList.push(8);
+      linkedList.push(6);
+      linkedList.push(3);
+      linkedList.push(11);
+      linkedList.push(1);
+      
+      linkedList.printList();
+      
+      System.out.println("\n linkedList odd after even is");
+      
+      linkedList.sortEvenOdd(head);
+      
+      linkedList.printList();
+      
+	}
+}

@@ -1,0 +1,76 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+    
+}
+public class Main
+{
+    static Node head;
+    static int size;
+    
+      Main()
+       {
+           head=null;
+           size=0;
+       }
+       public void printList(Node head)
+       {
+           Node temp=head;
+           while(temp!=null)
+           {
+               System.out.print(temp.data+" ");
+               temp=temp.next;
+           }
+       }
+       
+       
+       
+       public void push(int data)
+       {
+           Node newNode=new Node(data);
+           newNode.next=head;
+           head=newNode;
+       }
+       
+       public Node reverseLinkedlist(Node head)
+       {
+           Node prev=null;
+           Node current=head;
+           Node next=null;
+           
+           while(current!=null)
+           {
+               next=current.next;
+               current.next=prev;
+               prev=current;
+               current=next;
+           }
+           head=prev;
+           return head;
+       }
+       
+	public static void main(String[] args) {
+		Main linkedList=new Main();
+		linkedList.push(5);
+		linkedList.push(4);
+		linkedList.push(3);
+		linkedList.push(2);
+		linkedList.push(1);
+		
+	   linkedList.printList(head);
+	   
+	   head=linkedList.reverseLinkedlist(head);
+	   
+	    System.out.println("\n Reverse of Linkedlist is");
+	    
+	    linkedList.printList(head);
+	   
+	    
+	}
+}

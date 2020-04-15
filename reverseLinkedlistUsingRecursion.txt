@@ -1,0 +1,76 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+    
+}
+public class Main
+{
+    static Node head;
+    static int size;
+    
+      Main()
+       {
+           head=null;
+           size=0;
+       }
+       public void printList(Node head)
+       {
+           Node temp=head;
+           while(temp!=null)
+           {
+               System.out.print(temp.data+" ");
+               temp=temp.next;
+           }
+       }
+       
+       
+       
+       public void push(int data)
+       {
+           Node newNode=new Node(data);
+           newNode.next=head;
+           head=newNode;
+       }
+       
+       public Node reverseLinkedlist(Node head)
+       {
+         if(head==null || head.next==null)
+         {
+             return head;
+         }
+         Node finalHead=reverseLinkedlist(head.next);
+         Node temp=finalHead;
+          while(temp.next!=null)
+          {
+              temp=temp.next;
+          }
+          temp.next=head;
+          head.next=null;
+          return finalHead;
+       }
+       
+	public static void main(String[] args) {
+		Main linkedList=new Main();
+		linkedList.push(5);
+		linkedList.push(4);
+		linkedList.push(3);
+		linkedList.push(2);
+		linkedList.push(1);
+		
+	   linkedList.printList(head);
+	   
+	   head=linkedList.reverseLinkedlist(head);
+	   
+	    System.out.println("\n Reverse of Linkedlist is Using Recursive");
+	    
+	    linkedList.printList(head);
+	   
+	    
+	}
+}

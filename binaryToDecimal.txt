@@ -1,0 +1,77 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+}
+public class Main
+{
+    static Node head;
+    static int size; 
+    Main()
+    {
+        head=null;
+        size=0;
+        
+    }
+    public static void printList()
+    {
+       Node temp=head;
+       while(temp!=null)
+       {
+           System.out.print(temp.data+" ");
+           temp=temp.next;
+       }
+    }
+    public static int findBinary(Node head)
+    {
+             Node current=head;
+       Node prev=null;
+       Node next=null;
+       
+       while(current!=null)
+       {
+           next=current.next;
+           current.next=prev;
+           prev=current;
+           current=next;
+       }
+       int count=0;
+       Node a=prev;
+       int sum=0;
+       while(a!=null)
+       {
+           if(a.data==1)
+           {
+               sum=(int)(sum+Math.pow(2,count));
+           }
+           count++;
+           a=a.next;
+           
+           
+       }
+       return sum;
+    }
+    
+  static void push(int data)
+    {
+        Node newNode=new Node(data);
+        newNode.next=head;
+        head=newNode;
+    }
+	public static void main(String[] args) {
+	Main linkedList=new Main();
+	linkedList.push(0);
+		linkedList.push(1);
+	linkedList.printList();
+	
+	System.out.println("\n decimal to binary conversion is");
+	int binary=linkedList.findBinary(head);
+	System.out.println(binary);
+	
+	}
+}

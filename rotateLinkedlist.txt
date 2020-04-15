@@ -1,0 +1,86 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int d)
+    {
+        data=d;
+        next=null;
+    }
+    
+}
+public class Main
+{
+    static Node head;
+    static int size;
+    
+      Main()
+       {
+           head=null;
+           size=0;
+       }
+       public void printList(Node head)
+       {
+           Node temp=head;
+           while(temp!=null)
+           {
+               System.out.print(temp.data+" ");
+               temp=temp.next;
+           }
+       }
+       
+      
+       
+       
+       
+       public void push(int data)
+       {
+           Node newNode=new Node(data);
+           newNode.next=head;
+           head=newNode;
+       }
+       
+       public void rotateLinkedlist(int k)
+       {
+           Node current=head;
+           int count=1;
+           
+           while(current!=null && count<k)
+           {
+               current=current.next;
+               count++;
+           }
+              if(current==null)
+              {
+                  return;
+              }
+              Node kthNode=current;
+              
+             while(current.next!=null)
+              {
+               current=current.next;
+              }
+               current.next=head;
+               
+               head=kthNode.next;
+               kthNode.next=null;
+           
+       }
+       
+      
+       
+	public static void main(String[] args) {
+		Main linkedList=new Main();
+ 		 linkedList.push(5);
+	     linkedList.push(4);        
+	     linkedList.push(3);
+	     linkedList.push(2);
+         linkedList.push(1);
+		
+	   linkedList.printList(head);
+        linkedList.rotateLinkedlist(4);
+        System.out.println("\n After rotation of LinkedList");
+        linkedList.printList(head);
+	    
+	}
+}
